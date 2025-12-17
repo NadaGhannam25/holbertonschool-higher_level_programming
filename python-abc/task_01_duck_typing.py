@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
+from abc import ABC, abstractmethod
 import math
 
 
-class Shape:
+class Shape(ABC):
+    @abstractmethod
     def area(self):
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def perimeter(self):
-        raise NotImplementedError
+        pass
 
 
 class Circle(Shape):
