@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
-from abc import ABC, abstractmethod
 import math
 
 
-class Shape(ABC):
-    @abstractmethod
+class Shape:
     def area(self):
-        pass
+        raise NotImplementedError
 
-    @abstractmethod
     def perimeter(self):
-        pass
+        raise NotImplementedError
 
 
 class Circle(Shape):
@@ -36,8 +33,7 @@ class Rectangle(Shape):
         return 2 * (self.width + self.height)
 
 
-def shape_info(obj):
-    # Duck typing ONLY – no assumptions at all
-    print("Area:", obj.area())
-    print("Perimeter:", obj.perimeter())
+def shape_info(shape):
+    print("Area:", shape.area())
+    print("Perimeter:", shape.perimeter())
 
