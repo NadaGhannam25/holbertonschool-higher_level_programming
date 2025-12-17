@@ -4,35 +4,27 @@ import math
 
 
 class Shape(ABC):
-    """Abstract base class for shapes"""
-
     @abstractmethod
     def area(self):
-        """Return the area of the shape"""
         pass
 
     @abstractmethod
     def perimeter(self):
-        """Return the perimeter of the shape"""
         pass
 
 
 class Circle(Shape):
-    """Circle shape"""
-
     def __init__(self, radius):
         self.radius = radius
 
     def area(self):
-        return math.pi * (self.radius ** 2)
+        return math.pi * self.radius * self.radius
 
     def perimeter(self):
         return 2 * math.pi * self.radius
 
 
 class Rectangle(Shape):
-    """Rectangle shape"""
-
     def __init__(self, width, height):
         self.width = width
         self.height = height
@@ -45,7 +37,6 @@ class Rectangle(Shape):
 
 
 def shape_info(shape):
-    """Print area and perimeter of a shape using duck typing"""
-    print(f"Area: {shape.area()}")
-    print(f"Perimeter: {shape.perimeter()}")
+    print("Area:", shape.area())
+    print("Perimeter:", shape.perimeter())
 
