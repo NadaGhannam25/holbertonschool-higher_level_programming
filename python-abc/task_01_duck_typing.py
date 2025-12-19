@@ -1,40 +1,30 @@
 #!/usr/bin/env python3
-"""Task 01: Shapes, Interfaces, and Duck Typing (Holberton)."""
-
 from abc import ABC, abstractmethod
 import math
 
 
 class Shape(ABC):
-    """Abstract base class for shapes."""
-
     @abstractmethod
     def area(self):
-        """Return area of the shape."""
-        raise NotImplementedError
+        pass
 
     @abstractmethod
     def perimeter(self):
-        """Return perimeter of the shape."""
-        raise NotImplementedError
+        pass
 
 
 class Circle(Shape):
-    """Circle shape."""
-
     def __init__(self, radius):
         self.radius = radius
 
     def area(self):
-        return math.pi * (self.radius ** 2)
+        return math.pi * self.radius ** 2
 
     def perimeter(self):
         return 2 * math.pi * self.radius
 
 
 class Rectangle(Shape):
-    """Rectangle shape."""
-
     def __init__(self, width, height):
         self.width = width
         self.height = height
@@ -47,6 +37,5 @@ class Rectangle(Shape):
 
 
 def shape_info(shape):
-    """Print area and perimeter using duck typing."""
-    print(f"Area: {shape.area()}")
-    print(f"Perimeter: {shape.perimeter()}")
+    print("Area:", shape.area())
+    print("Perimeter:", shape.perimeter())
