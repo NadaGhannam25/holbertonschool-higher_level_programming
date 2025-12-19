@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Task 01: Shapes, Interfaces, and Duck Typing"""
+"""Task 01: Shapes, Interfaces, and Duck Typing (Holberton)."""
 
 from abc import ABC, abstractmethod
 import math
