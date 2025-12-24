@@ -20,6 +20,7 @@ class CustomObject:
         except Exception:
             return None
 
+    @classmethod
     def deserialize(cls, filename):
         try:
             with open(filename, "rb") as f:
