@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Prints the first State object from the database
+Deletes all State objects with a name containing the letter 'a'
 """
 import sys
 from sqlalchemy import create_engine
@@ -9,7 +9,7 @@ from model_state import Base, State
 
 if __name__ == "__main__":
     engine = create_engine(
-        'mysql+mysqldb://{}:{}@localhost/{}'.format(
+        "mysql+mysqldb://{}:{}@localhost/{}".format(
             sys.argv[1], sys.argv[2], sys.argv[3]
         ),
         pool_pre_ping=True
@@ -18,12 +18,9 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Fetch only the first state ordered by id
-    state = session.query(State).order_by(State.id).first()
+    states = session.query(State).filter(State.name.like('%a%')).all()
+    for state in states:
+        session.delete(state)
 
-    if state is None:
-        print("Nothing")
-    else:
-        print(f"{state.id}: {state.name}")
-
+    session.commit()
     session.close()
