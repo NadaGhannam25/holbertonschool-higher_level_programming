@@ -1,29 +1,26 @@
 #!/usr/bin/python3
+"""
+script that takes in arguments and displays all values in the states table of
+hbtn_0e_0_usa where name matches the argument.
+But this time, write one that is safe from MySQL injections
+"""
+
 import MySQLdb
-import sys
+from sys import argv
 
 if __name__ == "__main__":
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-    state_name = sys.argv[4]
+    """
+    Access to the database and get the states
+    from the database.
+    """
+    db = MySQLdb.connect(host="localhost", user=argv[1], port=3306,
+                         passwd=argv[2], db=argv[3])
 
-    db = MySQLdb.connect(
-        host="localhost",
-        user=username,
-        passwd=password,
-        db=database,
-        port=3306
-    )
-    cursor = db.cursor()
-
-    query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC;"
-    cursor.execute(query, (state_name,))
-
-    rows = cursor.fetchall()
-    for row in rows:
-        print(row)
-
-    cursor.close()
+    with db.cursor() as curseur:
+        curseur.execute("SELECT * FROM states WHERE name = %s ORDER BY id ASC",
+                        (argv[4],))
+        rows = curseur.fetchall()
+        for row in rows:
+            print(row)
+    curseur.close()
     db.close()
-
